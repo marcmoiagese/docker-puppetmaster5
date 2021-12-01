@@ -46,7 +46,9 @@ RUN yum install openssl git cronie -y
 #
 # puppet install
 #
-RUN rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+# RUN rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+RUN rpm -Uvh https://yum.puppet.com/puppet5-release-el-7.noarch.rpm
+RUN yum update puppet-release
 RUN yum install puppetserver -y
 
 RUN yum install epel-release -y
