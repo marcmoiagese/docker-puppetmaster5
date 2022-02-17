@@ -94,7 +94,6 @@ COPY routes.yaml /etc/puppetlabs/puppet/routes.yaml
 RUN yum install -y make gcc ruby-devel
 
 # fix repo puppet segons puppet
-RUN rpm -Uvh https://yum.puppet.com/puppet5-release-el-7.noarch.rpm
 RUN yum update puppet-release
 
 # canvi desde gem cap a paquet

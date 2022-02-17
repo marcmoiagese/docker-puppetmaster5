@@ -16,7 +16,7 @@ LABEL org.label-schema.vendor="" \
 ENV EYP_POSTGRES_PUPPETDB_PASSWORD 769d147d725f3a3d356f99eda68ed5cd
 ENV EYP_PUPPETFQDN=puppet5
 ENV HOME /root
-ENV PATH /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:/opt/puppet-masterless:/root/bin
+ENV PATH /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:/opt/bash-puppetmasterless:/root/bin
 
 RUN mkdir /root/.ssh
 RUN chmod 0700 /root/.ssh/
@@ -33,7 +33,7 @@ RUN yum install openssl git -y
 RUN yum install epel-release -y
 
 #
-# puppet-masterless
+# bash-puppetmasterless
 #
 RUN mkdir -p /opt
 RUN bash -c 'cd /opt; git clone https://github.com/marcmoiagese/bash-puppetmasterless.git'
@@ -45,21 +45,21 @@ RUN bash -c 'cd /opt; git clone https://github.com/marcmoiagese/bash-puppetmaste
 #RUN rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 #RUN yum install puppet-agent -y
 #RUN /opt/puppetlabs/puppet/bin/gem install r10k
-RUN /bin/bash /opt/puppet-masterless/setup.sh
+RUN /bin/bash /opt/bash-puppetmasterless/setup.sh
 
 #
 # postgres install
 #
 
 # https://github.com/NTTCom-MS/eyp-postgresql
-RUN /opt/puppet-masterless/localpuppetmaster.sh -d /tmp/postgres -r https://github.com/NTTCom-MS/eyp-postgresql
+RUN /opt/bash-puppetmasterless/localpuppetmaster.sh -d /tmp/postgres -r https://github.com/NTTCom-MS/eyp-postgresql
 COPY postgres.pp /usr/local/src/postgres.pp
 
 #
 # postgres install
 #
 
-RUN /opt/puppet-masterless/localpuppetmaster.sh -d /tmp/postgres -s /usr/local/src/postgres.pp
+RUN /opt/bash-puppetmasterless/localpuppetmaster.sh -d /tmp/postgres -s /usr/local/src/postgres.pp
 
 #
 # puppetDB install
