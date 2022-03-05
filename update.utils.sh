@@ -7,7 +7,11 @@ CURRENT_WD=$(pwd)
 if [ ! -d './puppetboard/.git' ];
 then
   git clone https://github.com/voxpupuli/puppetboard
+  cd "./puppetboard"
   git checkout v0.3.0
+else
+ cd "./puppetboard"
+ git checkout v0.3.0
 fi
 
 docker images | grep "eyp/voxpopuli-puppetboard" > /dev/null 2>&1
