@@ -8,10 +8,12 @@ if [ ! -d './puppetboard/.git' ];
 then
   git clone https://github.com/voxpupuli/puppetboard
   cd "./puppetboard"
-  git checkout v0.3.0
+  git checkout v3.1.0
+  cd ..
 else
  cd "./puppetboard"
- git checkout v0.3.0
+ git checkout v3.1.0
+ cd ..
 fi
 
 docker images | grep "eyp/voxpopuli-puppetboard" > /dev/null 2>&1
