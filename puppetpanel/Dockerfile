@@ -8,13 +8,13 @@ RUN apk add bash && apk add nginx && apk add supervisor && apk add apache2-utils
 
 RUN mkdir -p /etc/supervisor.d/
 RUN mkdir -p /run/nginx/
-RUN mkdir -p /run/nginx/httpd.d/
+RUN mkdir -p /run/nginx/http.d/
 COPY supervisor/gunicorn.ini /etc/supervisor.d/
 COPY supervisor/nginx.ini /etc/supervisor.d/
 
 COPY nginx/daemon.conf /etc/nginx/modules/
 COPY nginx/default.conf /etc/nginx/conf.d/
-COPY nginx/default.conf /etc/nginx/httpd.d/
+COPY nginx/default.conf /etc/nginx/http.d/
 
 RUN mkdir -p /usr/local/bin
 COPY runme.sh /usr/local/bin/runme.sh
